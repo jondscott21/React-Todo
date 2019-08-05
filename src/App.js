@@ -18,7 +18,9 @@ class App extends React.Component {
         }
       ] 
     };
-    
+  }
+  componentDidMount() {
+    this.setState(JSON.parse(localStorage.getItem('task')))
   }
 
   addToList = taskName => {
@@ -30,6 +32,7 @@ class App extends React.Component {
     this.setState({
       list: [...this.state.list, newItem]
     })
+    localStorage.setItem('task', JSON.stringify({list: [...this.state.list, newItem]}))
   }
 
   toggleClick = id => {
